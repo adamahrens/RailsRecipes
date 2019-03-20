@@ -6,6 +6,11 @@ class PagesTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should get about page' do
+    get about_url
+    assert_response :success
+  end
+
   test 'should get the root path' do
     get root_url
     assert_response :success

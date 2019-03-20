@@ -5,4 +5,9 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get home_url
     assert_response :success
   end
+
+  test 'should be able to get about' do
+    get about_url
+    assert_response :success
+  end
 end

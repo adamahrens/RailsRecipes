@@ -36,10 +36,12 @@ body {
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
   background-image: asset-url('cover.jpeg');
   background-size: cover;
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 60em;
+  overflow: scroll;
 }
 
 /*
