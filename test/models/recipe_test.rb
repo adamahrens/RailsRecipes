@@ -13,7 +13,14 @@
 require 'test_helper'
 
 class RecipeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @chef = Chef.create(name: 'Leroy Jenkins', email: 'leroy.jenkins@apps.com')
+    @recipe = Recipe.new(name: nil, description: nil, chef: @chef)
+  end
+
+  test 'recipe is valid only when name is provided' do
+    assert @recipe.valid? == false
+    @recipe.name = 'Beef Stew'
+    assert @recipe.valid? == true
+  end
 end
