@@ -18,9 +18,11 @@ class RecipeTest < ActiveSupport::TestCase
     @recipe = Recipe.new(name: nil, description: nil, chef: @chef)
   end
 
-  test 'recipe is valid only when name is provided' do
-    assert @recipe.valid? == false
+  test 'recipe is valid only when name & description is provided' do
+    assert_not @recipe.valid?
     @recipe.name = 'Beef Stew'
-    assert @recipe.valid? == true
+    assert_not @recipe.valid?
+    @recipe.description = 'Use winter vegetables and beef chuck'
+    assert @recipe.valid?
   end
 end
