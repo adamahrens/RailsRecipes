@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_193208) do
+ActiveRecord::Schema.define(version: 2019_03_21_001545) do
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_chefs_on_email", unique: true
   end
 
   create_table "recipes", force: :cascade do |t|
