@@ -25,4 +25,22 @@ class RecipeTest < ActiveSupport::TestCase
     @recipe.description = 'Use winter vegetables and beef chuck'
     assert @recipe.valid?
   end
+
+  test 'recipe length for name & description must meet minimum' do
+    @recipe.name = 'bee'
+    assert_not @recipe.valid?
+    @recipe.description = 'aaa'
+    assert_not @recipe.valid?
+    @recipe.name = 'beef'
+    @recipe.description = 'good'
+    assert @recipe.valid?
+  end
+
+  test 'recipe description not longer than 500 characters' do
+    @recipe.name = 'beef'
+    @recipe.description = 'd' * 501
+    assert_not @recipe.valid?
+    @recipe.description = 'd' * 500
+    assert @recipe.valid?
+  end
 end
