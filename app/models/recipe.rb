@@ -11,7 +11,6 @@
 #
 class Recipe < ApplicationRecord
   belongs_to :chef
-
   validates :name, presence: true, length: { minimum: 4 }
   validates :description, presence: true, length: { in: 4..500 }
 end
