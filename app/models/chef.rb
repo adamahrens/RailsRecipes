@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 class Chef < ApplicationRecord
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP },
