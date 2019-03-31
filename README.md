@@ -11,3 +11,4 @@ A Ruby on Rails Recipe App
 `r3 = Recipe.new(name: 'Orange Chicken', description: 'Orange Chicke with White Rice')`
 `r3.create_chef(name: 'Vinny', email: 'vinny@chef.com')`
 `r3.save`
+`rails g controller Recipes index`
