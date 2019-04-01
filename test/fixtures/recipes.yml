@@ -13,9 +13,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
+  name: Beef
+  description: Beef with carrots
+  chef: reginald
 
 two:
-  name: MyString
-  description: MyText
+  name: Chicken
+  description: Chicken with carrots
+  chef: reginald

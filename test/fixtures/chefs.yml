@@ -1,0 +1,14 @@
+# == Schema Information
+#
+# Table name: chefs
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+reginald:
+  name: Reginald Longfellow
+  email: reginald.longfellow@chef.com
