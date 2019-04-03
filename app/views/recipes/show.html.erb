@@ -1,9 +1,20 @@
-<div>
-  <h5><%= @recipe.name %></h5>
-  <p>
-    <%= @recipe.description %>
-  </p>
-  <p>
-    <span><%= time_ago_in_words(@recipe.created_at) %></span>
-  </p>
+<div class="row">
+  <div class="col-md-8">
+    <h5><%= @recipe.name %></h5>
+    <p>
+      <%= @recipe.description %>
+    </p>
+  </div>
+
+  <div class="col-md-4">
+    <div>
+      Created by <%= @recipe.chef.name %>
+    </div>
+    <div>
+      <%= image_tag avatar_url(@recipe.chef, 100), class: 'img-thumbnail' %>
+    </div>
+    <div>
+      <span><%= time_ago_in_words(@recipe.created_at) %></span>
+    </div>
+  </div>
 </div>

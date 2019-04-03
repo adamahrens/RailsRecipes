@@ -26,4 +26,27 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_equal @r1, assigns(:recipe)
     assert_match @r1.name, @response.body
   end
+
+  test 'should be able to get a new recipe form thats valid' do
+    get new_recipe_path
+    assert_template 'recipes/new'
+    name_of_recipe = 'Chicken Saute'
+    directions = 'add chicken plus beef broth and carrots'
+    params = { recipe: { name: name_of_recipe, description: directions } }
+    assert_difference 'Recipe.count', 1 do
+      post recipes_path, params: params
+    end
+    follow_redirect!
+    assert_match name_of_recipe, response.body
+    assert_match directions, response.body
+  end
+
+  test 'should be able to get a new recipe form thats invalid' do
+    get new_recipe_path
+    assert_template 'recipes/new'
+    assert_no_difference 'Recipe.count' do
+      post recipes_path, params: { recipe: { name: '', description: '' } }
+    end
+    assert_template 'recipes/new'
+  end
 end
