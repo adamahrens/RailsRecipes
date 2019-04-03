@@ -1,17 +1,22 @@
 # frozen_string_literal: true
+
 # Recipes Controller for CRUD operations on Recipe
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show]
 
   def index
     @recipes = Recipe.all
+    fresh_when(@recipes)
   end
 
-  def show; end
+  def show
+    fresh_when(@recipe)
+  end
 
   def new
     @recipe = Recipe.new
     @chefs = Chef.all
+    fresh_when(@chefs)
   end
 
   def create
