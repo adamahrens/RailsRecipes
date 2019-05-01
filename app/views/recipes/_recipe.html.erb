@@ -1,5 +1,8 @@
 <div class="recipe">
   <h5><%= recipe.name %></h5>
+  <div>
+    <%= image_tag avatar_url(recipe.chef, 50), class: 'img-thumbnail' %>
+  </div>
   <p>
     <%= recipe.description %>
   </p>
@@ -9,4 +12,5 @@
   <p>
     <%= link_to 'View More', recipe_path(recipe), class: 'btn btn-primary btn-large' %>
   </p>
+  <hr />
 </div>
