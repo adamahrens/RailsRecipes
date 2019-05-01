@@ -1,3 +1,4 @@
 <h1>Edit</h1>
+<%= render 'partials/errors', model: @recipe %>
 <%= render 'form', recipe: @recipe, chefs: @chefs %>
 <%= link_to 'Back', recipes_path, class: 'btn btn-primary' %>
