@@ -2,7 +2,7 @@
 
 # Recipes Controller for CRUD operations on Recipe
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update]
+  before_action :set_recipe, only: %i[show edit update destroy]
   before_action :set_chefs, only: %i[new edit]
 
   def index
@@ -44,6 +44,12 @@ class RecipesController < ApplicationController
       @chefs = Chef.all
       render 'new'
     end
+  end
+
+  def destroy
+    @recipe.destroy
+    flash[:success] = 'Recipe was deleted'
+    redirect_to recipes_path
   end
 
   private
