@@ -66,4 +66,13 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     patch recipe_path(@r1), params: { recipe: { name: '', description: @r1.description } }
     assert_template 'recipes/edit'
   end
+
+  test 'should be able to delete' do
+    get recipe_path(@r1)
+    assert_template 'recipes/show'
+    delete recipe_path(@r1)
+    follow_redirect!
+    assert_template 'recipes/index'
+    assert_no_match @r1.name, @response.body
+  end
 end
