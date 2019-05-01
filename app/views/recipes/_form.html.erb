@@ -1,4 +1,12 @@
-<%= form_with model: recipe do |form| %>
+<%= form_with model: recipe, local: true do |form| %>
+    <% if recipe.errors.full_messages.any? %>
+      <% recipe.errors.full_messages.each do |error_message| %>
+        <div class="alert alert-danger" role="alert">
+          <a href="#" class="close" data-dismiss="alert">&#215;</a>
+          <%= error_message %>
+        </div>
+      <% end %>
+    <% end %>
    <div class="form-group">
      <%= form.label :name %>
      <%= form.text_field :name, class: 'form-control', placeholder: 'Recipe name' %>
@@ -8,7 +16,7 @@
      <%= form.text_area :description, class: 'form-control', placeholder: 'Enter recipe directions', rows: 7 %>
    </div>
    <div class="form-group">
-     <%= form.collection_select :chef_id, chefs, :id, :name, {}, class: 'custom-select' %>   
+     <%= form.collection_select :chef_id, chefs, :id, :name, {}, class: 'custom-select' %>
    </div>
    <div class="form-group">
      <%= form.submit 'Submit', class: 'btn btn-primary' %>

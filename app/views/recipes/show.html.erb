@@ -4,6 +4,9 @@
     <p>
       <%= @recipe.description %>
     </p>
+    <p>
+      <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-primary' %>
+      </p>
   </div>
 
   <div class="col-md-4">

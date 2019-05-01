@@ -2,7 +2,8 @@
 
 # Recipes Controller for CRUD operations on Recipe
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show]
+  before_action :set_recipe, only: %i[show edit update]
+  before_action :set_chefs, only: %i[new edit]
 
   def index
     @recipes = Recipe.all
@@ -13,9 +14,23 @@ class RecipesController < ApplicationController
     fresh_when(@recipe)
   end
 
+  def edit
+    logger.debug "Recipe errors #{@recipe.errors.full_messages}"
+  end
+
+  def update
+    if @recipe.update(recipe_params)
+      flash[:success] = 'Recipe updated successfully'
+      redirect_to recipe_path(@recipe)
+    else
+      logger.debug "Recipe errors #{@recipe.errors.full_messages}"
+      @chefs = Chef.all
+      render 'edit'
+    end
+  end
+
   def new
     @recipe = Recipe.new
-    @chefs = Chef.all
     fresh_when(@chefs)
   end
 
@@ -25,7 +40,8 @@ class RecipesController < ApplicationController
       flash[:success] = 'Recipe created successfully'
       redirect_to recipe_path(@recipe)
     else
-      flash[:danger] = 'Recipe contained errors'
+      logger.debug "Recipe errors #{@recipe.errors.full_messages}"
+      @chefs = Chef.all
       render 'new'
     end
   end
@@ -38,5 +54,9 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def set_chefs
+    @chefs = Chef.all
   end
 end

@@ -32,7 +32,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_template 'recipes/new'
     name_of_recipe = 'Chicken Saute'
     directions = 'add chicken plus beef broth and carrots'
-    params = { recipe: { name: name_of_recipe, description: directions } }
+    params = { recipe: { name: name_of_recipe, description: directions, chef_id: @chef.id } }
     assert_difference 'Recipe.count', 1 do
       post recipes_path, params: params
     end
@@ -48,5 +48,23 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
       post recipes_path, params: { recipe: { name: '', description: '' } }
     end
     assert_template 'recipes/new'
+  end
+
+  test 'should be able to edit a valid recipe' do
+    updated_name = 'New Recipe Name'
+    get edit_recipe_path(@r1)
+    assert_template 'recipes/edit'
+    patch recipe_path(@r1), params: { recipe: { name: updated_name, description: @r1.description } }
+    follow_redirect!
+    assert_template 'recipes/show'
+    assert_match updated_name, @response.body
+  end
+
+  test 'should be unable to edit an invalid recipe' do
+    get edit_recipe_path(@r1)
+    assert_template 'recipes/edit'
+    patch recipe_path(@r1), params: { recipe: { name: '', description: @r1.description } }
+    assert_template 'recipes/edit'
+    assert @r1.errors.any?
   end
 end
