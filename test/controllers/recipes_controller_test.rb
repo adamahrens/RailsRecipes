@@ -65,6 +65,5 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_template 'recipes/edit'
     patch recipe_path(@r1), params: { recipe: { name: '', description: @r1.description } }
     assert_template 'recipes/edit'
-    assert @r1.errors.any?
   end
 end
