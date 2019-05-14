@@ -27,8 +27,10 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  get 'chefs/new'
   get 'home', to: 'home#index'
   get 'about', to: 'home#about'
+  get 'signup', to: 'chefs#new'
   root to: 'home#index'
   resources :recipes
   resources :chefs
