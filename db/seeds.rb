@@ -1,4 +1,4 @@
 # frozen_string_literal: true
-chef = Chef.create(name: 'Leroy', email: 'leroy@chef.com')
+chef = Chef.create(name: 'Leroy', email: 'leroy@chef.com', password: 'password1234', password_confirmation: 'password1234')
 Recipe.create(name: 'Cookies Shake', description: 'Cookies & Cream Shake', chef: chef)
 Recipe.create(name: 'Hamburger', description: 'Angus Beef with Lettuce & Tomato', chef: chef)

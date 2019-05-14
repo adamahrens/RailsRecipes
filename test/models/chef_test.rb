@@ -13,7 +13,20 @@ require 'test_helper'
 
 class ChefTest < ActiveSupport::TestCase
   def setup
-    @chef = Chef.new(name: 'Leroy Jenkins', email: 'leroy.jenkins@apps.com')
+    @chef = Chef.new(name: 'Leroy Jenkins', email: 'leroy.jenkins@apps.com', password: 'password1234', password_confirmation: 'password1234')
+  end
+
+  test 'chef password should be present' do
+    @chef.password = ' '
+    @chef.password_confirmation = ' '
+    assert_not @chef.valid?
+  end
+
+  test 'chef password should meet minimum of five' do
+    pass = '!' * 4
+    @chef.password = pass
+    @chef.password_confirmation = pass
+    assert_not @chef.valid?
   end
 
   test 'chef name should be present' do
