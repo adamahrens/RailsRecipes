@@ -1,1 +1,15 @@
 <h1>Viewing <%= @chef.name %> Profile</h1>
+<div>
+  <%= image_tag avatar_url(@chef, 100), class: 'img-thumbnail' %>
+</div>
+<p>
+  Reach me at <%= @chef.email %>
+  </p>
+<h2>My Recipes</h2>
+<% if @chef.recipes.count > 0 %>
+  <%= render @chef.recipes, cached: true %>
+<% else %>
+  <p>
+    No recipes available
+    </p>
+<% end %>

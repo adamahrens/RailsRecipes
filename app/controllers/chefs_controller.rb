@@ -2,6 +2,7 @@ class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show]
 
   def show
+    fresh_when(@chef)
   end
 
   def new
@@ -22,7 +23,10 @@ class ChefsController < ApplicationController
   private
 
   def chef_params
-    params.require(:chef).permit(:name, :email, :password, :password_confirmation)
+    params.require(:chef).permit(:name,
+                                 :email,
+                                 :password,
+                                 :password_confirmation)
   end
 
   def set_chef
