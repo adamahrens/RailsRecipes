@@ -1,6 +1,11 @@
 class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show edit update]
 
+  def index
+    @chefs = Chef.all
+    fresh_when(@chefs)
+  end
+
   def show
     fresh_when(@chef)
   end
