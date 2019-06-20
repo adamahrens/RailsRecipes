@@ -5,6 +5,9 @@
 <p>
   Reach me at <%= @chef.email %>
   </p>
+  <p>
+    <%= link_to 'Edit', edit_chef_path(@chef), class: 'btn btn-danger' %>
+    </p>
 <h2>My Recipes</h2>
 <% if @chef.recipes.count > 0 %>
   <%= render @chef.recipes, cached: true %>

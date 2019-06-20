@@ -1,8 +1,21 @@
 class ChefsController < ApplicationController
-  before_action :set_chef, only: %i[show]
+  before_action :set_chef, only: %i[show edit update]
 
   def show
     fresh_when(@chef)
+  end
+
+  def edit
+  end
+
+  def update
+    if @chef.update(chef_params)
+      flash[:success] = 'Chef updated successfully'
+      redirect_to @chef
+    else
+      logger.debug "Chef update errors #{@chef.errors.full_messages}"
+      render 'edit'
+    end
   end
 
   def new
@@ -13,7 +26,7 @@ class ChefsController < ApplicationController
     @chef = Chef.new(chef_params)
     if @chef.save
       flash[:success] = 'Chef created successfully'
-      redirect_to chef_path(@chef)
+      redirect_to @chef
     else
       logger.debug "Chef errors #{@chef.errors.full_messages}"
       render 'new'
