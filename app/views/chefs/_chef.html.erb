@@ -1,0 +1,11 @@
+<div class="chef">
+  <h1><%= chef.name %> (<%= chef.id %>)</h1>
+  <p>
+    Email at  <%= mail_to chef.email %>
+  </p>
+  <p>
+    Total Recipes is <%= chef.recipes.count %>
+  </p>
+  <%= link_to "View More", chef, class: 'btn btn-primary' %>
+  <hr />
+</div>

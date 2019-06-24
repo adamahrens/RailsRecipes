@@ -2,7 +2,7 @@ class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show edit update]
 
   def index
-    @chefs = Chef.all
+    @chefs = Chef.includes(:recipes).all
     fresh_when(@chefs)
   end
 
