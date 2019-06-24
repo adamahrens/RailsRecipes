@@ -1,5 +1,5 @@
 class ChefsController < ApplicationController
-  before_action :set_chef, only: %i[show edit update]
+  before_action :set_chef, only: %i[show edit update destroy]
 
   def index
     @chefs = Chef.includes(:recipes).all
@@ -36,6 +36,12 @@ class ChefsController < ApplicationController
       logger.debug "Chef errors #{@chef.errors.full_messages}"
       render 'new'
     end
+  end
+
+  def destroy
+    old = @chef.destroy
+    flash[:success] = "#{old.name} was deleted!"
+    redirect_to chefs_path
   end
 
   private
