@@ -2,8 +2,7 @@ class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show edit update destroy]
 
   def index
-    @chefs = Chef.includes(:recipes).all
-    fresh_when(@chefs)
+    @chefs = Chef.paginate(page: params[:page], per_page: 4).includes(:recipes)
   end
 
   def show
