@@ -1,5 +1,6 @@
 class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show edit update destroy]
+  before_action :require_authenticated_user
 
   def index
     @chefs = Chef.paginate(page: params[:page], per_page: 4).includes(:recipes)

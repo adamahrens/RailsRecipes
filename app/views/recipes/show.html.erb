@@ -13,7 +13,7 @@
 
   <div class="col-md-4">
     <div>
-      Created by <%= @recipe.chef.name %>
+      Created by <%= @recipe.chef.name %> - <%= @recipe.chef.id %>
     </div>
     <div>
       <%= image_tag avatar_url(@recipe.chef, 100), class: 'img-thumbnail' %>

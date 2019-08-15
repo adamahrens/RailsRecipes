@@ -4,6 +4,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :set_chefs, only: %i[new edit]
+  before_action :require_authenticated_user
+  before_action :validate_current_chef, only: %i[edit update destroy]
 
   def index
     @recipes = Recipe.all
@@ -53,6 +55,13 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def validate_current_chef
+    return unless @recipe.chef != current_chef
+
+    flash[:danger] = 'You dont own the Recipe'
+    redirect_to recipes_path
+  end
 
   def recipe_params
     params.require(:recipe).permit(:name, :description, :chef_id)
