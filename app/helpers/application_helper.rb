@@ -18,4 +18,12 @@ module ApplicationHelper
       ]
     end
   end
+
+  def current_chef
+    @current_chef ||= Chef.find(session[:chef_id]) if session[:chef_id]
+  end
+
+  def logged_in?
+    current_chef.nil? == false
+  end
 end
