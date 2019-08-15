@@ -3,11 +3,16 @@ class ApplicationController < ActionController::Base
     # Only available if a successful login occurred
     logger.debug "Current user is #{@chef.id}" if @chef
     logger.debug "Session Chef_id is #{session[:chef_id]}" if session[:chef_id]
-    @chef ||= Chef.find(session[:chef_id]) if session[:chef_id]
+    @current_chef ||= Chef.find(session[:chef_id]) if session[:chef_id]
   end
 
   def logged_out?
     current_chef.nil?
+  end
+
+  def logout
+    session[:chef_id] = nil
+    @current_chef = nil
   end
 
   def require_authenticated_user

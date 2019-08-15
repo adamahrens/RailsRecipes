@@ -4,7 +4,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :set_chefs, only: %i[new edit]
-  before_action :require_authenticated_user
+  before_action :require_authenticated_user, except: %i[index show]
   before_action :validate_current_chef, only: %i[edit update destroy]
 
   def index

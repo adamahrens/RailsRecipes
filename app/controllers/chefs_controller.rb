@@ -1,6 +1,7 @@
 class ChefsController < ApplicationController
   before_action :set_chef, only: %i[show edit update destroy]
-  before_action :require_authenticated_user
+  before_action :require_authenticated_user, except: %i[index show new create]
+  before_action :validate_same_chef, only: %i[edit update destroy]
 
   def index
     @chefs = Chef.paginate(page: params[:page], per_page: 4).includes(:recipes)
@@ -45,6 +46,13 @@ class ChefsController < ApplicationController
   end
 
   private
+
+  def validate_same_chef
+    return unless @chef != current_chef
+
+    flash[:danger] = 'You arent this Chef'
+    redirect_to recipes_path
+  end
 
   def chef_params
     params.require(:chef).permit(:name,
