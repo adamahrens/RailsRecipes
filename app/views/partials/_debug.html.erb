@@ -5,5 +5,8 @@
     <code>
       Chef Id = <%= session[:chef_id] %>
     </code>
+    <code>
+      Is current chef an admin? <%= current_chef.admin? %>
+    </code>
   <% end %>
 </div>

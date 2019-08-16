@@ -2,6 +2,9 @@
 <div>
   <%= image_tag avatar_url(@chef, 100), class: 'img-thumbnail' %>
 </div>
+<code>
+  Is admin? <%= @chef.admin? %>
+</code>
 <p>
   Reach me at <%= @chef.email %>
   </p>

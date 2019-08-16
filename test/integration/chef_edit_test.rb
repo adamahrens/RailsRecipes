@@ -5,6 +5,7 @@ class ChefEditTest < ActionDispatch::IntegrationTest
                          email: 'leroy.jenkins@email.com',
                          password: 'password1',
                          password_confirmation: 'password1')
+    sign_in_as(@chef, 'password1')
   end
 
   test 'should reject an invalid edit' do

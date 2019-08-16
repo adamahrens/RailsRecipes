@@ -28,6 +28,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be able to get a new recipe form thats valid' do
+    sign_in_as(@chef, 'password1234')
     get new_recipe_path
     assert_template 'recipes/new'
     name_of_recipe = 'Chicken Saute'
@@ -42,6 +43,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be able to get a new recipe form thats invalid' do
+    sign_in_as(@chef, 'password1234')
     get new_recipe_path
     assert_template 'recipes/new'
     assert_no_difference 'Recipe.count' do
@@ -51,6 +53,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be able to edit a valid recipe' do
+    sign_in_as(@chef, 'password1234')
     updated_name = 'New Recipe Name'
     get edit_recipe_path(@r1)
     assert_template 'recipes/edit'
@@ -61,6 +64,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be unable to edit an invalid recipe' do
+    sign_in_as(@chef, 'password1234')
     get edit_recipe_path(@r1)
     assert_template 'recipes/edit'
     patch recipe_path(@r1), params: { recipe: { name: '', description: @r1.description } }
@@ -68,6 +72,7 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be able to delete' do
+    sign_in_as(@chef, 'password1234')
     get recipe_path(@r1)
     assert_template 'recipes/show'
     delete recipe_path(@r1)

@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
   private
 
   def validate_current_chef
-    return unless @recipe.chef != current_chef
+    return unless @recipe.chef != current_chef && !current_chef&.admin?
 
     flash[:danger] = 'You dont own the Recipe'
     redirect_to recipes_path

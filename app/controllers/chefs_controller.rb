@@ -48,7 +48,8 @@ class ChefsController < ApplicationController
   private
 
   def validate_same_chef
-    return unless @chef != current_chef
+    logger.debug "Is current chef an admin? #{current_chef.admin?}"
+    return unless @chef != current_chef && !current_chef&.admin?
 
     flash[:danger] = 'You arent this Chef'
     redirect_to recipes_path

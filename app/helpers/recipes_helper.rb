@@ -5,6 +5,6 @@ module RecipesHelper
   end
 
   def recipe_owner_is_current_user?(recipe)
-    recipe.chef == current_chef
+    recipe.chef == current_chef || current_chef&.admin?
   end
 end

@@ -13,6 +13,7 @@ class ChefDeleteTest < ActionDispatch::IntegrationTest
   end
 
   test 'should have an index listing page of chefs' do
+    sign_in_as(@chef2, 'password1')
     get chefs_path
     assert_template 'chefs/index'
     assert_select 'a[href=?]', chef_path(@chef)
@@ -20,6 +21,7 @@ class ChefDeleteTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be able to delete chef from index page' do
+    sign_in_as(@chef2, 'password1')
     get chefs_path
     assert_template 'chefs/index'
     assert_difference 'Chef.count', -1 do
