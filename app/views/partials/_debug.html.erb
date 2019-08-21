@@ -3,10 +3,12 @@
 
   <% if Rails.env.development? %>
     <code>
-      Chef Id = <%= session[:chef_id] %>
+      Chef Id =
+      <%= session[:chef_id] %>
     </code>
     <code>
-      Is current chef an admin? <%= current_chef.admin? %>
+      Is current chef an admin?
+      <%= current_chef&.admin? %>
     </code>
   <% end %>
 </div>

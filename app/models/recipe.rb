@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: recipes
@@ -11,6 +13,7 @@
 #
 class Recipe < ApplicationRecord
   belongs_to :chef, touch: true
+  has_and_belongs_to_many :ingredients
   validates :name, presence: true, length: { minimum: 4 }
   validates :description, presence: true, length: { in: 4..500 }
   validates :chef_id, presence: true
