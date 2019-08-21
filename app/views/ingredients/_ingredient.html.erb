@@ -1,0 +1,7 @@
+<div class="ingredient">
+  <h5><%= ingredient.name %></h5>
+  <p>
+    Total Recipes is
+    <%= pluralize(ingredient.recipes.count, "recipe") %>
+  </p>
+</div>

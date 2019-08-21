@@ -4,7 +4,8 @@ class ChefsController < ApplicationController
   before_action :validate_same_chef, only: %i[edit update destroy]
 
   def index
-    @chefs = Chef.paginate(page: params[:page], per_page: 4).includes(:recipes)
+    @chefs = Chef.paginate(page: params[:page], per_page: 4)
+                 .includes(:recipes)
   end
 
   def show

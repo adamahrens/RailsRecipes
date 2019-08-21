@@ -7,6 +7,7 @@ module ApplicationHelper
         link_to('About', about_path, class: 'nav-link'),
         link_to('Recipes', recipes_path, class: 'nav-link'),
         link_to('New Recipe', new_recipe_path, class: 'nav-link'),
+        link_to('Ingredients', ingredients_path, class: 'nav-link'),
         link_to('Chefs', chefs_path, class: 'nav-link'),
         link_to('New Chef', signup_path, class: 'nav-link'),
         link_to(profile_link_text, chef_path(current_chef), class: 'nav-link'),

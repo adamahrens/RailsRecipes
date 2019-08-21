@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_011351) do
+ActiveRecord::Schema.define(version: 2019_08_21_142524) do
 
   create_table "chefs", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_08_21_011351) do
     t.string "password_digest"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_chefs_on_email", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "recipe_id"
+    t.integer "chef_id"
+    t.index ["chef_id"], name: "index_comments_on_chef_id"
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
