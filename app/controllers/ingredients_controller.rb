@@ -1,10 +1,9 @@
 class IngredientsController < ApplicationController
-  before_action :require_authenticated_user
+  before_action :require_authenticated_user, except: %i[index show]
   before_action :set_ingredient, only: %i[show]
 
   def index
-    @ingredients = Ingredient.paginate(page: params[:page], per_page: 5)
-                             .includes(:recipes)
+    @ingredients = Ingredient.all.includes(:recipes)
   end
 
   def show
