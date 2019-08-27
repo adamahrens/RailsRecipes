@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12">
+    <h5><%= @ingredient.name %></h5>
+    <p>
+      Recipes that include this ingredient
+    </p>
+    <hr/>
+    <% if @ingredient.recipes.count > 0 %>
+      <%= render @ingredient.recipes, cached: true %>
+    <% else %>
+      <p>
+        No ingredients available
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -40,5 +40,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :recipes
   resources :chefs
-  resources :ingredients, only: %i[index]
+  resources :ingredients, only: %i[index show new create]
 end
