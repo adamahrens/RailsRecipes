@@ -1,16 +1,22 @@
 <%= form_with model: recipe, local: true do |form| %>
-   <div class="form-group">
-     <%= form.label :name %>
-     <%= form.text_field :name, class: 'form-control', placeholder: 'Recipe name' %>
-   </div>
-   <div class="form-group">
-     <%= form.label :description %>
-     <%= form.text_area :description, class: 'form-control', placeholder: 'Enter recipe directions', rows: 7 %>
-   </div>
-   <div class="form-group">
-     <%= form.collection_select :chef_id, chefs, :id, :name, {}, class: 'custom-select' %>
-   </div>
-   <div class="form-group">
-     <%= form.submit 'Submit', class: 'btn btn-primary' %>
-   </div>
+<div class="form-group">
+  <%= form.label :name %>
+  <%= form.text_field :name, class: 'form-control', placeholder: 'Recipe name' %>
+</div>
+<div class="form-group">
+  <%= form.label :description %>
+  <%= form.text_area :description, class: 'form-control', placeholder: 'Enter recipe directions', rows: 7 %>
+</div>
+<div class="form-group">
+  <%= form.collection_select :chef_id, chefs, :id, :name, {}, class: 'custom-select' %>
+</div>
+<hr/>
+<div class="form-check">
+  <%= form.collection_check_boxes :ingredient_ids, ingredients, :id, :name do |cb| %>
+    <% cb.label(class: "form-check-inline") { cb.check_box(class: "checkbox") + cb.text} %>
+  <% end %>
+</div>
+<div class="form-group">
+  <%= form.submit 'Submit', class: 'btn btn-primary' %>
+</div>
 <% end %>

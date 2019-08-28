@@ -4,6 +4,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :set_chefs, only: %i[new edit]
+  before_action :set_ingredients, only: %i[new edit]
   before_action :require_authenticated_user, except: %i[index show]
   before_action :validate_current_chef, only: %i[edit update destroy]
 
@@ -64,7 +65,8 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :chef_id)
+    params.require(:recipe)
+          .permit(:name, :description, :chef_id, ingredient_ids: [])
   end
 
   def set_recipe
@@ -73,5 +75,9 @@ class RecipesController < ApplicationController
 
   def set_chefs
     @chefs = Chef.all
+  end
+
+  def set_ingredients
+    @ingredients = Ingredient.all
   end
 end

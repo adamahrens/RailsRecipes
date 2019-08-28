@@ -10,8 +10,9 @@
       <%= link_to 'Delete', recipe_path(@recipe), method: :delete, data: { confirm: "Are you sure you want to delete?" }, class: 'btn btn-danger' %>
       </p>
     <% end %>
-
-
+    <hr />
+    <h5>Ingredients</h5>
+    <%= render(partial: 'ingredient', collection: @recipe.ingredients) || 'No ingredients' %>
   </div>
 
   <div class="col-md-4">
