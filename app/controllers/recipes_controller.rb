@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     fresh_when(@recipe)
   end
 
@@ -28,13 +29,13 @@ class RecipesController < ApplicationController
     else
       logger.debug "Recipe errors #{@recipe.errors.full_messages}"
       @chefs = Chef.all
+      @ingredients = Ingredient.all
       render 'edit'
     end
   end
 
   def new
     @recipe = Recipe.new
-    fresh_when(@chefs)
   end
 
   def create
@@ -45,6 +46,7 @@ class RecipesController < ApplicationController
     else
       logger.debug "Recipe errors #{@recipe.errors.full_messages}"
       @chefs = Chef.all
+      @ingredients = Ingredient.all
       render 'new'
     end
   end

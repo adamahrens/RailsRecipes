@@ -14,5 +14,5 @@ class Comment < ApplicationRecord
   belongs_to :chef
   belongs_to :recipe
 
-  scope :latest, -> { order(updated_at: :desc) }
+  scope :latest_comments, -> { order(updated_at: :desc) }
 end

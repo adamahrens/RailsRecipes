@@ -5,6 +5,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     @chef = Chef.create(name: 'Leroy', email: 'leroy@chef.com', password: 'password1234', password_confirmation: 'password1234')
     @r1 = Recipe.create(name: 'Cookies Shake', description: 'Cookies & Cream Shake', chef: @chef)
     @r2 = Recipe.create(name: 'Hamburger', description: 'Angus Beef with Lettuce & Tomato', chef: @chef)
+    @i1 = Ingredient.create(name: 'Butter')
+    @i2 = Ingredient.create(name: 'Onion')
   end
 
   test 'should be able to get index' do

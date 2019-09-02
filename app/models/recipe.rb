@@ -13,7 +13,7 @@
 #
 class Recipe < ApplicationRecord
   belongs_to :chef, touch: true
-  has_many :comments, dependent: :destroy
+  has_many :comments, -> { latest_comments }, dependent: :destroy
   has_and_belongs_to_many :ingredients
   validates :name, presence: true, length: { minimum: 4 }
   validates :description, presence: true, length: { in: 4..500 }

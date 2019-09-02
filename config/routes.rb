@@ -27,6 +27,7 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  get 'comments/create'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -38,7 +39,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   root to: 'home#index'
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: %i[create]
+  end
   resources :chefs
   resources :ingredients, only: %i[index show new create]
 end
