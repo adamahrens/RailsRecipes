@@ -13,10 +13,8 @@
 <hr/>
 <div class="form-check">
   <%= form.collection_check_boxes :ingredient_ids, ingredients, :id, :name do |cb| %>
-    <% cb.label(class: "form-check-inline") { cb.check_box(class: "checkbox") + cb.text} %>
-  <% end %>
+  <% cb.label(class: "form-check-inline") { cb.check_box(class: "checkbox") + cb.text} %><% end %>
 </div>
-
 <div class="form-group">
   <%= form.submit 'Submit', class: 'btn btn-primary' %>
 </div>
