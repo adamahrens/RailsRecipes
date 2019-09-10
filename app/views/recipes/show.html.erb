@@ -16,7 +16,7 @@
     <hr/>
 
     <% if logged_in? %>
-      <%= form_with model: @comment, url: [@recipe, @comment], local: true do |form| %>
+      <%= form_with model: @comment, url: [@recipe, @comment] do |form| %>
       <div class="form-group">
         <%= form.label :description, 'Add your comment' %>
         <%= form.text_area :description, class: 'form-control', placeholder: 'Comment', rows: 8 %>
@@ -28,7 +28,9 @@
     <hr/>
   <% end %>
   <h5>Comments</h5>
-  <%= render(partial: 'comment', collection: @recipe.comments) || 'No comments' %>
+  <div id="comments">
+    <%= render(partial: 'comment', collection: @recipe.comments) || 'No comments' %>
+  </div>
 </div>
 
 <div class="col-md-4">

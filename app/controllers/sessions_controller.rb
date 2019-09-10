@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     @chef = Chef.find_by(email: params[:session][:email])
     if @chef&.authenticate(params[:session][:password])
       session[:chef_id] = @chef.id
+      cookies.encrypted[:chef_id] = @chef.id # For ActionCable
       flash[:success] = 'Successfully logged in'
       redirect_to @chef
     else

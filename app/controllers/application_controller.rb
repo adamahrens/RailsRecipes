@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def logout
     session[:chef_id] = nil
+    cookies.delete(:chef_id)
     @current_chef = nil
   end
 
