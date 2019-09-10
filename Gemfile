@@ -19,6 +19,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.7'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rb-readline', '~> 0.5.5'
 end
 
 group :development do

@@ -1,0 +1,7 @@
+<p>
+  <%= message.content %>
+</p>
+<div>
+  Posted by <%= message.chef.name %> <span> <%= time_ago_in_words(message.created_at) %> ago</span>
+</div>
+<hr />
