@@ -1,6 +1,9 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#             chatroom_show GET    /chatroom/show(.:format)                                                                 chatroom#show
+#                                  /cable                                                                                   #<ActionCable::Server::Base:0x00007fe1a8cff990 @mutex=#<Monitor:0x00007fe1a8cff968 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x00007fe1a8cff918>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
+#                      chat GET    /chat(.:format)                                                                          chatroom#show
 #           comments_create GET    /comments/create(.:format)                                                               comments#create
 #              sessions_new GET    /sessions/new(.:format)                                                                  sessions#new
 #           sessions_create GET    /sessions/create(.:format)                                                               sessions#create
@@ -41,7 +44,9 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  get 'chatroom/show'
   mount ActionCable.server => '/cable'
+  get 'chat', to: 'chatroom#show'
   get 'comments/create'
   get 'sessions/new'
   get 'sessions/create'

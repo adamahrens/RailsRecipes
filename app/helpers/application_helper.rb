@@ -3,8 +3,7 @@ module ApplicationHelper
     if session[:chef_id]
       profile_link_text = current_chef.admin? ? 'My Profile (Admin)' : 'My Profile'
       [
-        link_to('Home', root_path, class: 'nav-link'),
-        link_to('About', about_path, class: 'nav-link'),
+        link_to('Chat', chat_path, class: 'nav-link'),
         link_to('Recipes', recipes_path, class: 'nav-link'),
         link_to('New Recipe', new_recipe_path, class: 'nav-link'),
         link_to('Ingredients', ingredients_path, class: 'nav-link'),
