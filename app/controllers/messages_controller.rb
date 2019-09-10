@@ -2,12 +2,16 @@ class MessagesController < ApplicationController
   before_action :require_authenticated_user
 
   def create
-    @message = Message.new(message_params)
-    @message.chef = current_chef
+    @chef = Chef.find(params[:chef_id])
+    @message = @chef.messages.build(message_params)
     if @message.save
+      ActionCable.server.broadcast(
+        'messages',
+        render(partial: 'chatroom/message', object: @message)
+      )
     else
       flash[:danger] = 'Message was not created'
-      redirect_to :back
+      redirect_to chat_path
     end
   end
 

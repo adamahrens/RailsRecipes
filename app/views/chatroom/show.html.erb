@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Chatroom</h1>
-    <%= render(partial: 'message', collection: @messages) || 'No messages' %>
+    <div id="messages">
+      <%= render(partial: 'message', collection: @messages) || 'No messages' %>
+    </div>
   </div>
   <div class="col-md-4">
     <%= form_with model: @message, url: [current_chef, @message] do |form| %>
