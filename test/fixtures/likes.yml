@@ -1,10 +1,9 @@
 # == Schema Information
 #
-# Table name: messages
+# Table name: likes
 #
 #  id         :integer          not null, primary key
-#  content    :text
-#  chef_id    :integer
+#  recipe_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -12,9 +11,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
-  chef: one
+  recipe: one
 
 two:
-  content: MyText
-  chef: two
+  recipe: two

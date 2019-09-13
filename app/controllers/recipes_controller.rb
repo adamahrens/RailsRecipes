@@ -15,7 +15,6 @@ class RecipesController < ApplicationController
 
   def show
     @comment = Comment.new
-    fresh_when(@recipe)
   end
 
   def edit

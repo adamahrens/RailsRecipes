@@ -59,9 +59,10 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   root to: 'home#index'
-  
+
   resources :recipes do
     resources :comments, only: %i[create]
+    resources :likes, only: %i[create]
   end
 
   resources :chefs do
