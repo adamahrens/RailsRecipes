@@ -10,6 +10,10 @@
         <p>
           <%= image_tag @recipe.instructions.preview(resize: '200x200') %>
         </p>
+      <% elsif @recipe.instructions.variable? %>
+        <p>
+          <%= image_tag url_for(@recipe.instructions), class: 'img-thumbnail rounded post-image' %>
+        </p>
       <% else %>
         <p>
           <%= link_to 'Download', rails_blob_path(@recipe.instructions, disposition: "attachment"), class: 'btn btn-primary' %>
