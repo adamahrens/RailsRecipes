@@ -16,6 +16,9 @@
   <% cb.label(class: "form-check-inline") { cb.check_box(class: "checkbox") + cb.text} %><% end %>
 </div>
 <div class="form-group">
+  <%= form.file_field :instructions %>  
+</div>
+<div class="form-group">
   <%= form.submit 'Submit', class: 'btn btn-primary' %>
 </div>
 <% end %>

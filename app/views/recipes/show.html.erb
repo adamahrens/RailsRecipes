@@ -5,6 +5,18 @@
       <%= @recipe.description %>
     </p>
 
+    <% unless @recipe.instructions.attachment.nil? %>
+      <% if @recipe.instructions.previewable? %>
+        <p>
+          <%= image_tag @recipe.instructions.preview(resize: '200x200') %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to 'Download', rails_blob_path(@recipe.instructions, disposition: "attachment"), class: 'btn btn-primary' %>
+        </p>
+      <% end %>
+    <% end %>
+
     <% if recipe_owner_is_current_user?(@recipe) %>
       <p>
         <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-primary' %>

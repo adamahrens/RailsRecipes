@@ -15,6 +15,10 @@ class RecipesController < ApplicationController
 
   def show
     @comment = Comment.new
+
+    if @recipe.instructions.attachment.nil? == false && @recipe.instructions.previewable?
+      logger.debug 'instructions are previewable'
+    end
   end
 
   def edit
@@ -67,7 +71,11 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe)
-          .permit(:name, :description, :chef_id, ingredient_ids: [])
+          .permit(:name,
+                  :description,
+                  :chef_id,
+                  :instructions,
+                  ingredient_ids: [])
   end
 
   def set_recipe
